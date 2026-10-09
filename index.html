@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f5ee" />
+    <meta name="description" content="하루의 작은 순간을 한 조각씩 모으는 기록장" />
+    <title>하루 한 조각 — 오늘을 모으는 기록장</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Gowun+Dodum&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#today" aria-label="하루 한 조각 홈">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span>하루 한 조각<small>little moments, kept</small></span>
+        </a>
+        <div class="side-label">기록장</div>
+        <nav class="side-nav" aria-label="주요 메뉴">
+          <button class="nav-item active" data-view="today"><span class="nav-icon">✳</span>오늘 기록</button>
+          <button class="nav-item" data-view="calendar"><span class="nav-icon">▦</span>달력</button>
+          <button class="nav-item" data-view="journal"><span class="nav-icon">≡</span>모아보기</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="quote-mark">“</div>
+          <p>작은 순간도<br />모이면 나의 계절이 돼요.</p>
+          <span>오늘도 천천히, 한 조각</span>
+          <div class="side-flower" aria-hidden="true">✿</div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="mobile-brand"><span class="brand-mark"><span></span></span>하루 한 조각</div>
+          <div class="topbar-right"><span class="save-indicator"><i></i> 이 기기에 저장돼요</span><span class="avatar">오늘</span></div>
+        </header>
+
+        <section class="view active" id="today-view">
+          <div class="welcome-row">
+            <div><div class="eyebrow" id="today-date"></div><h1>오늘의 한 조각<span class="title-period">.</span></h1><p class="lead">마음에 남은 순간을 하나만 골라 담아보세요.</p></div>
+            <div class="today-stamp" aria-hidden="true"><span>✿</span><small>ONE<br />A DAY</small></div>
+          </div>
+
+          <div id="today-content"></div>
+          <div class="page-footnote"><span>✦</span> 기록은 이 브라우저에만 저장돼요.</div>
+        </section>
+
+        <section class="view" id="calendar-view">
+          <div class="page-heading"><div class="eyebrow">YOUR DAYS, IN BLOOM</div><h1>기록 달력<span class="title-period">.</span></h1><p class="lead">기록이 쌓인 날을 눌러 다시 만나보세요.</p></div>
+          <div class="calendar-card">
+            <div class="calendar-toolbar"><button class="icon-button" id="prev-month" aria-label="이전 달">‹</button><h2 id="calendar-month"></h2><button class="icon-button" id="next-month" aria-label="다음 달">›</button></div>
+            <div class="calendar-grid weekday-row"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+            <div class="calendar-grid" id="calendar-days"></div>
+            <div class="calendar-legend"><span><i></i> 기록한 날</span><span id="month-count"></span></div>
+          </div>
+          <div class="selected-day-card" id="selected-day-card"></div>
+        </section>
+
+        <section class="view" id="journal-view">
+          <div class="page-heading"><div class="eyebrow">A COLLECTION OF LITTLE THINGS</div><h1>모아보기<span class="title-period">.</span></h1><p class="lead">차곡차곡 모인 당신의 순간들이에요.</p></div>
+          <div class="journal-toolbar"><span id="journal-count"></span><select id="journal-filter" aria-label="기록 종류 필터"><option value="all">모든 기록</option><option value="line">한 줄 기록</option><option value="prompt">오늘의 질문</option><option value="mood">기분 기록</option></select></div>
+          <div id="journal-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="entry-dialog" class="entry-dialog">
+      <form id="entry-form" method="dialog">
+        <div class="dialog-top"><div><div class="eyebrow" id="form-date"></div><h2 id="form-title">오늘의 순간</h2></div><button type="button" class="icon-button close-button" id="close-dialog" aria-label="닫기">×</button></div>
+        <div id="form-fields"></div>
+        <div class="form-actions"><button type="button" class="text-button" id="cancel-entry">취소</button><button type="submit" class="primary-button">기록 저장 <span>→</span></button></div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
